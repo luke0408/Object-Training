@@ -14,6 +14,17 @@ public class Bag {
         this.invitation = invitation;
     }
 
+    public Long hold(Ticket ticket) {
+        if (hasInvitation()) {
+            setTicket(ticket);
+            return 0L;
+        } else {
+            setTicket(ticket);
+            minusAmount(ticket.getFee());
+            return ticket.getFee();
+        }
+    }
+
     // 초대장 여부 확인
     public boolean hasInvitation() {
         return invitation != null;
@@ -32,11 +43,6 @@ public class Bag {
     // 현금을 감소
     public void minusAmount(Long amount) {
         this.amount -= amount;
-    }
-
-    // 현금을 증가
-    public void plusAmount(Long amount) {
-        this.amount += amount;
     }
 
     public Long getAmount() {
